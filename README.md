@@ -14,17 +14,13 @@ These are a pair of functions which I import in `Excel` to obtain the exponent a
 
 These are implementations of linear regression models in `python` and `julia`. They include calculations of uncertainty in the slope and intercept for error propagation purposes.
 
-### `packageLoad.jl`
-
-This is a work in project which will ideally be able to check if `julia` packages are installed and then load them into a script.
-
 ### `packageLoad.R` and `scriptSource.R`
 
 This pair of functions will check if `R` packages are installed and load them into a script as well as source several functions which may be used.
 
-### `projectile.m`, `projectile_force.m`, and `projectile_motion.m`
+### `projectile.m`, `projectile_force.m`, and `projectile_motion.m`, `projectileMotion.jl`
 
-These are `MATLAB` functions which use Euler's method to solve for the trajectory of a particle subject to both linear and quadratic drag forces.
+These are `MATLAB` functions which use Euler's method to solve for the trajectory of a particle subject to both linear and quadratic drag forces. This function was also rewritten in `julia`.
 
 ### `ROUNDSIGFIG.bas`
 
