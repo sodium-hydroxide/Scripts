@@ -13,9 +13,17 @@
 #       Date        Programmer      Description of change
 #       ~~~~~~~~~~  ~~~~~~~~~~~~    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #       2022/12/22  N. J. Blair     Original code
+#       2022/12/25  N. J. Blair     Made the function more strongly typed
 #
 #using Base
-function linearRegression(independent,dependent;residualCalc = false)
+function LinearRegression(
+    independent::Vector{Float64},
+    dependent::Vector{Float64};
+    residualCalc::Bool = false
+    )::NamedTuple{
+        (:slope, :slopeUncertainty, :intercept, :interceptUncertainty,
+        :score, :residualSlope), NTuple{6, Float64}
+    }
     # Define several important variables which will be used later on
     xSum = independent |> sum
     xSqr = independent .|> (x -> x^2) |> sum
@@ -76,7 +84,11 @@ function linearRegression(independent,dependent;residualCalc = false)
     else
         model = (
             slope=slope,
-            intercept=intercept
+            slopeUncertainty = 0.,
+            intercept=intercept,
+            interceptUncertainty = 0.,
+            score = 0.,
+            residualSlope = 0.
         )
         return model
     end

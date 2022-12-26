@@ -18,7 +18,7 @@
 using DataFrames
 using CSV
 using DelimitedFiles
-function topasParse(inputName::String,
+function TopasParse(inputName::String,
     energyMin_MeV::Float64,
     energyMax_MeV::Float64;
     measuredStatistics::Vector{String} = ["Mean","StDev"],
