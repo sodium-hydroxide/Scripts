@@ -14,6 +14,8 @@
 #       ~~~~~~~~~~  ~~~~~~~~~~~~    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #       2022/12/22  N. J. Blair     Original code
 #       2022/12/25  N. J. Blair     Made the function more strongly typed
+#       2023/01/06  N. J. Blair     Removed calculation of y^2 and cleaned up
+#                                   some calculations to be more readable.
 #
 #using Base
 function LinearRegression(
@@ -28,7 +30,6 @@ function LinearRegression(
     xSum = independent |> sum
     xSqr = independent .|> (x -> x^2) |> sum
     ySum = dependent |> sum
-    ySqr = dependent .|> (x -> x^2) |> sum
     xyProd = .*(independent, dependent) |> sum
     numObs = size(independent)[1]
 
@@ -43,7 +44,7 @@ function LinearRegression(
     if !residualCalc
         # Calculate ssRes, ssTot, and the score
         predictedOutput = .+(intercept, .*(slope, independent))
-        residuals = .-(dependent - predictedOutput)
+        residuals = .-(dependent, predictedOutput)
 
         ssRes = residuals .|> (x -> x^2)  |> sum
         ssTot = xSqr - (xSum ^ 2)
@@ -51,24 +52,20 @@ function LinearRegression(
         score = 1. - /(ssRes,ssTot)
         
         # Calculate the error in the slope and intercept
-        slopeUncertainty = sqrt(
-            /(
-                numObs * ssRes,
-                delta * (numObs - 2)
-            )
-        )
-        interceptUncertainty = sqrt(
-            /(
-                xSqr * ssRes,
-                delta * (numObs - 2)
-            )
-        )
+        slopeUncertainty = sqrt(/(
+            numObs * ssRes,
+            delta * (numObs - 2)
+        ))
+        interceptUncertainty = sqrt(/(
+            xSqr * ssRes,
+            delta * (numObs - 2)
+        ))
 
         # Calculate the slope of the residual
         residualSlope = linearRegression(
             independent,residuals;residualCalc = true
             ).slope
-        
+
         # Save the data to a tuple called model
         model = (
             slope = slope,
