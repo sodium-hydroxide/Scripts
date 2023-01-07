@@ -9,5 +9,5 @@ Function ROUNDSIGFIG(number, sigFigs)
     numExponent = Int(Log(Abs(number)) / Log(10))
     numMantissa = number / (10 ^ numExponent)
     roundedMantissa = Round(numMantissa, sigFigs - 1)
-    USR_ROUNDSIGFIG = roundedMantissa * (10 ^ numExponent)
+    ROUNDSIGFIG = roundedMantissa * (10 ^ numExponent)
 End Function
