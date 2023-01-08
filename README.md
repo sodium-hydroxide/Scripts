@@ -2,10 +2,6 @@
  These are a collection of scripts I have written for a variety of purposes. Several are implementations of built in functions for the purpose of better understanding the methodology. Explanations of each project will be found in the header along with a brief history of changes. Below will be a brief explanation of each project.
 
 
-### `-Testing.ipynb`
-
-This is a temporary `jupyter` notebook used for writing many of the `python` and `julia` scripts. This will typically remain empty unless I am actively working on a project.
-
 ### `EXPONENT.bas` and `MANTISSA.bas`
 
 These are a pair of functions which I import in `Excel` to obtain the exponent and mantissa of a number given some base.
